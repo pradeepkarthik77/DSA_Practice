@@ -84,6 +84,33 @@ class BST:
 
         return arr
 
+    def levelorder(self):
+
+        curr = self.root 
+
+        if curr is None:
+            return []
+
+        currarr = [self.root]
+        nextarr = []
+        arr = []
+
+        while currarr:
+
+            element = currarr.pop(0)
+            arr.append(element.val)
+
+            if element.left is not None:
+                nextarr.append(element.left)
+            if element.right is not None:
+                nextarr.append(element.right)
+
+            if currarr == []:
+                currarr = nextarr.copy()
+                nextarr = []
+        
+        return arr
+
 if __name__=="__main__":
     bst = BST()
     bst.insertNode(5)
@@ -94,6 +121,6 @@ if __name__=="__main__":
     print(bst.inorder())
     print(bst.preorder())
     print(bst.postorder())
-    
+    print(bst.levelorder())
     
     
