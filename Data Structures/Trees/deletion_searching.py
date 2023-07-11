@@ -145,6 +145,48 @@ class BST:
         
         else:
             return False
+    
+    def deleteNode(self,root, X):
+    # code here.
+    
+        if root is None:
+            return root
+        
+        elif root.val == X:
+            
+            if root.left is None and root.right is None:
+                return None
+            
+            elif root.left is None or root.right is None:
+                
+                if root.left is not None:
+                    root.val,root.left.val = root.left.val,root.val
+                    root.left = self.deleteNode(root.left,X)
+                
+                else:
+                    root.val,root.right.val = root.right.val,root.val
+                    root.right = self.deleteNode(root.right,X)
+                
+            else:
+                
+                temp = root.right
+                
+                while temp.left:
+                    temp = temp.left
+                
+                root.val,temp.val = temp.val,root.val
+                root.right = self.deleteNode(root.right,X)
+                
+        else:
+            root.right = self.deleteNode(root.right,X)
+            root.left = self.deleteNode(root.left,X)
+        
+        return root
+
+    def deleteIt(self,item):
+
+        self.root = self.deleteNode(self.root,item)
+     
 
 if __name__=="__main__":
     bst = BST()
@@ -159,5 +201,7 @@ if __name__=="__main__":
     print(bst.levelorder())
     print(bst.recurse_search(1))
     print(bst.iterative_search(100))
+    bst.deleteIt(5)
+    print(bst.inorder())
     
     
