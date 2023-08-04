@@ -15,15 +15,16 @@ def bestSum(target,arr,dp):
         val = bestSum(rem,arr,dp)
         
         if val is not None:
-            val.append(i)
-            if shortest is None or len(val) < len(shortest):
-                shortest = val.copy()
+            combination = val.copy()
+            combination.append(i)
+            if shortest is None or len(combination) < len(shortest):
+                shortest = combination
     
     dp[target] = shortest
     return shortest
 
-arr = [5,3,4,2]
-target = 7
+arr = [1,2,5,25]
+target = 100
 
 dp = {}
 
