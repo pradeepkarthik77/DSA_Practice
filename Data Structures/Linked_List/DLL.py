@@ -42,7 +42,3 @@ obj.addNode(4)
 print(obj.printDLL())
 obj.removeNode(2)
 print(obj.printDLL())
-
-
-
-
